@@ -5,10 +5,12 @@ import register from './auth.Ctrl/register';
 import mailCheck from './auth.Ctrl/mailCheck';
 import nameCheck from './auth.Ctrl/nameCheck';
 import pwNormalization from './auth.Ctrl/pwNormalization';
+import verifyCheck from './auth.Ctrl/verifyCheck';
 
 const router = Router();
 
 router.post('/login', login);
+router.post('/login/verifyCheck', verifyCheck);
 
 router.post('/register', register);
 router.post('/register/mailCheck', mailCheck);
