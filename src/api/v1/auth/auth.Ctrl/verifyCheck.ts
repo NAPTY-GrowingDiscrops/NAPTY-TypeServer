@@ -20,8 +20,6 @@ export default async (req: Request, res: Response) => {
       },
     });
 
-    console.log(data);
-
     if (!data) {
       return res.status(401).json({
         messgae: "토큰을 잘못 입력하였습니다.",
