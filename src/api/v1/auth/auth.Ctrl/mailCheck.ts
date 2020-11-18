@@ -25,6 +25,7 @@ export default async (req: Request, res: Response) => {
        });
     }
     
+    console.log('사용할 수 있는 email입니다');
     return res.status(200).json({
       message: "사용할 수 있는 email입니다.",
     });
