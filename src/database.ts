@@ -1,4 +1,3 @@
-import { syncBuiltinESMExports } from 'module';
 import { Connection, createConnection, ConnectionOptions } from 'typeorm';
 
 import databaseConfig from './config/database.json';

@@ -1,11 +1,27 @@
-import { timeStamp } from 'console';
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { 
+  Entity, 
+  Column, 
+  PrimaryGeneratedColumn, 
+  BaseEntity 
+} from 'typeorm';
 
-@Entity('post')
-export default class Post extends BaseEntity {
+@Entity('comment')
+export default class Comment extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   idx: number;
+
+  @Column({
+    length: 255,
+    nullable: false,
+  })
+  post_idx: number;
+
+  @Column({
+    length: 255,
+    nullable: false,
+  })
+  comment_idx: number;
 
   @Column({
     length: 255,
@@ -19,23 +35,10 @@ export default class Post extends BaseEntity {
   })
   user_name: string;
 
-  @Column({
-    length: 255,
-    nullable: false,
-  })
-  title: string;
-  
-  @Column({
-    length: 255,
+  @Column('text', {
     nullable: false,
   })
   content: string;
-
-  @Column({
-    length: 255,
-    nullable: false,
-  })
-  view: number;
 
   @Column({
     type: 'timestamp',
