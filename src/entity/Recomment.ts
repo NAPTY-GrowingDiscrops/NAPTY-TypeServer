@@ -1,24 +1,23 @@
 import { 
   Entity, 
   Column, 
+  CreateDateColumn,
   PrimaryGeneratedColumn, 
   BaseEntity 
 } from 'typeorm';
 
-@Entity('comment')
+@Entity('recomment')
 export default class Comment extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   idx: number;
 
   @Column({
-    length: 255,
     nullable: false,
   })
   post_idx: number;
 
   @Column({
-    length: 255,
     nullable: false,
   })
   comment_idx: number;
@@ -40,10 +39,8 @@ export default class Comment extends BaseEntity {
   })
   content: string;
 
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+  @Column('timestampz')
+  @CreateDateColumn()
   created_at: Date;
 
 }

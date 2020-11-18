@@ -1,6 +1,7 @@
 import {
   Entity,
   Column, 
+  CreateDateColumn,
   PrimaryGeneratedColumn,
   BaseEntity,
 } from 'typeorm';
@@ -12,7 +13,6 @@ export default class View extends BaseEntity {
   idx: number;
 
   @Column({
-    length: 255,
     nullable: false,
   })
   post_idx: number;
@@ -23,10 +23,8 @@ export default class View extends BaseEntity {
   })
   ip: string;
 
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+  @Column('timestampz')
+  @CreateDateColumn()
   created_at: Date;
 
 }

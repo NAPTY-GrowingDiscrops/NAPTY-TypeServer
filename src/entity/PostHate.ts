@@ -12,7 +12,6 @@ export default class PostHate extends BaseEntity {
   idx: number;
 
   @Column({
-    length: 255,
     nullable: false,
   })
   post_idx: number;
