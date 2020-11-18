@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import * as nodemailer from 'nodemailer';
 import { createMailToken, verifyToken } from '../../../../lib/token';
 import { SERVER } from '../../../../lib/store';
-import { info } from 'console';
 
 export default async (req: Request, res: Response) => {
   type RequestBody = {
@@ -16,8 +15,8 @@ export default async (req: Request, res: Response) => {
       service: 'gmail',
       auth: {
         user: 'mailverify1234@gmail.com',
-        pass: 'wndqls4337'
-      }
+        pass: 'wndqls4337',
+      },
     });
 
     const token = await createMailToken(email);
@@ -32,6 +31,7 @@ export default async (req: Request, res: Response) => {
     await transporter.sendMail(mailOption, function(err, info) {
       if (err) {
         console.log(err);
+        res.status(403);
       } else {
         console.log('Email send: ' + info.response);
       }
