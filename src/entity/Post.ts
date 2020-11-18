@@ -1,5 +1,4 @@
-import { timeStamp } from 'console';
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity('post')
 export default class Post extends BaseEntity {
