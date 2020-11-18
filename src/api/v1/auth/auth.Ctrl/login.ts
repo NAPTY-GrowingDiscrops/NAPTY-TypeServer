@@ -32,7 +32,7 @@ export default async (req: Request, res: Response) => {
       });
     }
 
-    const token = await createToken(isExist.id);
+    const token = await createToken(isExist.id, isExist.name);
     console.log("로그인 성공");
     return res.status(200).json({
       message: "로그인 성공",

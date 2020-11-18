@@ -1,12 +1,10 @@
 import jwt, { SignOptions } from 'jsonwebtoken';
-import { ParsedUrlQuery } from 'querystring';
-import { tokenToString } from 'typescript';
 
 import { JWT_SECRET, MAIL_SECRET } from '../config/Secret';
 
-export const createToken = async (id: string): Promise<string> => {
+export const createToken = async (id: string, name: string): Promise<string> => {
   const payload = {
-    id,
+    id, name,
   };
 
   const options: SignOptions = {

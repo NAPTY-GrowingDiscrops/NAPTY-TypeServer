@@ -26,8 +26,8 @@ export default async (req: Request, res: Response) => {
       });
     }
 
-    console.log("이메일 인증이 되지 않은 계정입니다.");
     if (data.emailReq === false) {
+      console.log("이메일 인증이 되지 않은 계정입니다.");
       return res.status(401).json({
         message: "이메일 인증이 되지 않은 계정입니다.",
       });
