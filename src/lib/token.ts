@@ -20,7 +20,7 @@ export const createMailToken = async (email: string): Promise<string> => {
   };
 
   const options: SignOptions = {
-    expiresIn: '30min',
+    expiresIn: '30m',
   }
 
   return jwt.sign(payload, MAIL_SECRET, options);

@@ -5,10 +5,10 @@ import User from '../../../../entity/User';
 
 export default async (req: Request, res: Response) => {
   type RequestBody = {
-    name;
+    name: string;
   };
 
-  const { name } = req.body; 
+  const { name }: RequestBody = req.body; 
 
   try {
     const userRepo = getRepository(User);
