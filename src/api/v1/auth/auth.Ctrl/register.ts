@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
 import User from '../../../../entity/User';
-import encrypt from '../../../../config/encrypt';
+import encrypt from '../../../../lib/encrypt';
 
 export default async (req: Request, res: Response) => {
 

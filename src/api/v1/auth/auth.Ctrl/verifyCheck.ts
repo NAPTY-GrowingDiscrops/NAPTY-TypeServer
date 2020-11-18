@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
 import User from '../../../../entity/User';
-import { verifyToken } from '../../../../config/token';
+import { verifyToken } from '../../../../lib/token';
 
 export default async (req: Request, res: Response) => {
   type RequestBody = {

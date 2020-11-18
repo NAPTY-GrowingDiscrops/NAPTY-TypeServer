@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
-import { createToken } from '../../../../config/token';
+import { createToken } from '../../../../lib/token';
 import User from '../../../../entity/User';
-import encrypt from '../../../../config/encrypt';
+import encrypt from '../../../../lib/encrypt';
 
 export default async (req: Request, res: Response) => {
   type RequestBody = {
