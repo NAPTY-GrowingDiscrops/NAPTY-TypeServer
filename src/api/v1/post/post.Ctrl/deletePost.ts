@@ -32,6 +32,7 @@ export default async (req: AuthRequest, res: Response) => {
 
     await postRepo.remove(post);
 
+    console.log("게시글 삭제 완료!");
     return res.status(200).json({
       message: "게시글 삭제 완료!",
     });

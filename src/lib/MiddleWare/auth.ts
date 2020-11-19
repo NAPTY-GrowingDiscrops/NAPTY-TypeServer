@@ -13,14 +13,12 @@ export default async (req, res: Response, next: NextFunction) => {
     });
   } else {
     const decodedToken = await verifyToken(token);
-    console.log(decodedToken);
     const userRepo = getRepository(User);
     const user: User = await userRepo.findOne({
       where: {
         id: decodedToken.id,
       },
     });
-    console.log(user);
 
     req.user = user;
     next();
