@@ -7,10 +7,10 @@ import deletePost from './post.Ctrl/deletePost';
 
 const router = Router();
 
-router.post('/', authMiddleWare, createPost);
+router.post('/', authMiddleWare.loginCheck, createPost);
 
-router.get('/:idx', authMiddleWare, getPost);
+router.get('/:idx', authMiddleWare.guestCheck, getPost);
 
-router.delete('/:idx', authMiddleWare, deletePost);
+router.delete('/:idx', authMiddleWare.loginCheck, deletePost);
 
 export default router;

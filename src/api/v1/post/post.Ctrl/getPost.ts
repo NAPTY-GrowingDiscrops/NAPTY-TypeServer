@@ -59,8 +59,8 @@ export default async (req: AuthRequest, res: Response) => {
     }
 
     const encryptIp = encrypt(ip);
-
-    const viewed = await postRepo.findOne({
+    
+    const viewed = await viewRepo.findOne({
       where: {
         post_idx: post.idx,
         ip: encryptIp,
@@ -78,7 +78,7 @@ export default async (req: AuthRequest, res: Response) => {
       await postRepo.save(post);
 
       const view = new View();
-
+      
       view.ip = encryptIp;
       view.post_idx = idx;
       viewRepo.save(view);
@@ -99,7 +99,7 @@ export default async (req: AuthRequest, res: Response) => {
         created_at: "DESC",
       },
     });
-
+    
     const postLike: PostLike[] = await PostLikeRepo.find({
       where: {
         post_idx: idx,
@@ -116,7 +116,7 @@ export default async (req: AuthRequest, res: Response) => {
       }
     }
     post.likeCount = postLike.length;
-
+    
     const postHate = await PostHateRepo.find({
       where: {
         post_idx: idx,
@@ -147,6 +147,7 @@ export default async (req: AuthRequest, res: Response) => {
         post.deletePost = false;
     }
 
+    console.log("게시글 불러오기 성공!");
     return res.status(200).json({
       message: "게시글 불러오기 성공",
       post,
