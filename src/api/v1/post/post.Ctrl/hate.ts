@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 
 import AuthRequest from '../../../../type/AuthRequest';
 import User from '../../../../entity/User';
-import Like from '../../../../entity/PostLike';
+import Hate from '../../../../entity/PostHate';
 
 export default async (req: AuthRequest, res: Response) => {
   const user: User = req.user;
@@ -19,9 +19,9 @@ export default async (req: AuthRequest, res: Response) => {
     user_id: user.id,
   }
   try {
-    const postLikeRepo = getRepository(Like);
+    const postHateRepo = getRepository(Hate);
 
-    const isExist = await postLikeRepo.findOne({
+    const isExist = await postHateRepo.findOne({
       where: {
         post_idx: idx,
         user_id: user.id,
@@ -30,14 +30,14 @@ export default async (req: AuthRequest, res: Response) => {
 
     if (isExist) {
       return res.status(409).json({
-        message: "이미 좋아요를 눌렀습니다",
+        message: "이미 싫어요를 눌렀습니다",
       });
     }
 
-    await postLikeRepo.save(data);
-    console.log("좋아요 성공!");
+    await postHateRepo.save(data);
+    console.log("싫어요 성공!");
     return res.status(200).json({
-      message: "좋아요 성공!",
+      message: "싫어요 성공!",
     });
   } catch (err) {
     console.log(err);

@@ -8,6 +8,7 @@ import findPosts from './post.Ctrl/findPosts';
 import modifyPost from './post.Ctrl/modifyPost';
 import deletePost from './post.Ctrl/deletePost';
 import like from './post.Ctrl/like';
+import hate from './post.Ctrl/hate';
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.put('/:idx', authMiddleWare.loginCheck, modifyPost);
 router.delete('/:idx', authMiddleWare.loginCheck, deletePost);
 
 router.post('/like/:idx', authMiddleWare.loginCheck, like);
+router.post('/hate/:idx', authMiddleWare.loginCheck, hate);
 
 export default router;
