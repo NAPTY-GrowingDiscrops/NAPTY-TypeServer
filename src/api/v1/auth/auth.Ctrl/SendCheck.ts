@@ -29,6 +29,7 @@ export default async (req: Request, res: Response) => {
         emailReq: true,
     });
 
+    console.log("이메일 인증 완료!");
     return res.status(200).sendFile('mailCheck.html', {
       'root': 'src/public/mail',
     });

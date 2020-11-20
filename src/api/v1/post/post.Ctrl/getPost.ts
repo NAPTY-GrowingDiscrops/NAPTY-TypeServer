@@ -31,7 +31,7 @@ export default async (req: AuthRequest, res: Response) => {
     hateCount?: number;
     modifyPost?: Boolean;
     deletePost?: Boolean;
-  }
+  };
 
   try {
     const postRepo = getRepository(Post);

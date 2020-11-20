@@ -37,6 +37,7 @@ export default async (req: Request, res: Response) => {
       }
     });
 
+    console.log("메일 발송 성공!");
     return res.status(200).json({
       message: "메일 발송 성공!",
     });

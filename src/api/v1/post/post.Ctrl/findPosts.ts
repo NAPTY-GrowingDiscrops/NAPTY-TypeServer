@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, Like } from 'typeorm';
 
 import AuthRequest from '../../../../type/AuthRequest';
 import Post from '../../../../entity/Post';
@@ -7,6 +7,8 @@ import PostLike from '../../../../entity/PostLike';
 import PostHate from '../../../../entity/PostHate';
 
 export default async (req: AuthRequest, res: Response) => {
+  const keyword: string = String(req.params.keyword);
+
   type PostInfo = {
     idx: number;
     user_id: string;
@@ -24,8 +26,10 @@ export default async (req: AuthRequest, res: Response) => {
     const postHateRepo = getRepository(PostHate);
 
     const posts: PostInfo[] = await postRepo.find({
-      order: {
-        created_at: 'DESC',
+      where: {
+        title: Like(`%${keyword}%`),
+      }, order: {
+        created_at: "DESC",
       },
     });
 
