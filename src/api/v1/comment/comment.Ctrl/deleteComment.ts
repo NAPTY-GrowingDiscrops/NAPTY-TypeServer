@@ -7,7 +7,7 @@ import Comment from '../../../../entity/Comment';
 
 export default async (req: AuthRequest, res: Response) => {
   const user: User = req.user;
-  const idx: number = Number(req.params.idx);
+  const idx: number = Number(req.params.comment_idx);
 
   try {
     const commentRepo = getRepository(Comment);

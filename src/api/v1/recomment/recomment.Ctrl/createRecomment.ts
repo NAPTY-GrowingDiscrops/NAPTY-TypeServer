@@ -4,18 +4,27 @@ import { getRepository } from 'typeorm';
 import AuthRequest from '../../../../type/AuthRequest';
 import User from '../../../../entity/User';
 import Comment from '../../../../entity/Comment';
+import Recomment from '../../../../entity/Recomment';
 
 export default async (req: AuthRequest, res: Response) => {
   const user: User = req.user;
   const idx: number = Number(req.params.comment_idx);
-  const reqContent: string = String(req.body.content);
+
+  type RequestComment = {
+    post_idx: number;
+    comment_idx: number;
+    user_id: string;
+    user_name: string;
+    content: string;
+  };
 
   try {
-    const commentRepo = getRepository(Comment);
+    const CommentRepo = getRepository(Comment);
+    const RecommentRepo = getRepository(Recomment);
 
-    const comment: Comment = await commentRepo.findOne({
+    const comment: Comment = await CommentRepo.findOne({
       where: {
-        idx,
+        idx: idx,
       },
     });
 
@@ -25,18 +34,18 @@ export default async (req: AuthRequest, res: Response) => {
       });
     }
 
-    if (comment.user_id != user.id) {
-      return res.status(409).json({
-        message: "자신의 댓글이 아닙니다",
-      });
-    }
+    const reComment: RequestComment = {
+      post_idx: comment.post_idx,
+      comment_idx: comment.idx,
+      user_id: user.id,
+      user_name: user.name,
+      content: req.body.content,
+    };
 
-    comment.content = reqContent;
-    await commentRepo.save(comment);
-
-    console.log("댓글 수정 완료!");
+    await RecommentRepo.save(reComment);
+    console.log("답글 작성성공!");
     return res.status(200).json({
-      message: "댓글 수정 완료!",
+      message: "답글 작성 성공!",
     });
   } catch (err) {
     console.log(err);

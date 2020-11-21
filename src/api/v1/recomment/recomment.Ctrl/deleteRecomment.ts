@@ -3,40 +3,38 @@ import { getRepository } from 'typeorm';
 
 import AuthRequest from '../../../../type/AuthRequest';
 import User from '../../../../entity/User';
-import Comment from '../../../../entity/Comment';
+import Recomment from '../../../../entity/Recomment';
 
 export default async (req: AuthRequest, res: Response) => {
   const user: User = req.user;
-  const idx: number = Number(req.params.comment_idx);
-  const reqContent: string = String(req.body.content);
+  const idx: number = Number(req.params.recomment_idx);
 
   try {
-    const commentRepo = getRepository(Comment);
+    const recommentRepo = await getRepository(Recomment);
 
-    const comment: Comment = await commentRepo.findOne({
+    const recomment: Recomment = await recommentRepo.findOne({
       where: {
         idx,
       },
     });
 
-    if (!comment) {
+    if (!recomment) {
       return res.status(404).json({
-        message: "없는 댓글입니다",
+        message: "존재하지않는 답글입니다",
       });
     }
 
-    if (comment.user_id != user.id) {
+    if (recomment.user_id != user.id) {
       return res.status(409).json({
-        message: "자신의 댓글이 아닙니다",
+        message: "자신의 답글이 아닙니다",
       });
     }
 
-    comment.content = reqContent;
-    await commentRepo.save(comment);
+    await recommentRepo.remove(recomment);
 
-    console.log("댓글 수정 완료!");
+    console.log("답글 삭제 완료");
     return res.status(200).json({
-      message: "댓글 수정 완료!",
+      messae: "답글 삭제 완료",
     });
   } catch (err) {
     console.log(err);

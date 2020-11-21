@@ -8,7 +8,7 @@ import User from '../../../../entity/User';
 
 export default async (req: AuthRequest, res: Response) => {
   const user: User = req.user;
-  const idx: number = Number(req.params.idx);
+  const idx: number = Number(req.params.post_idx);
 
   type CommentData = {
     post_idx: number;
@@ -21,7 +21,7 @@ export default async (req: AuthRequest, res: Response) => {
     const CommentRepo = getRepository(Comment);
     const PostRepo = getRepository(Post);
 
-    const post = await PostRepo.findOne({
+    const post: Post = await PostRepo.findOne({
       where: {
         idx: idx,
       },
