@@ -1,0 +1,11 @@
+{
+  "database": "gdproject_ts",
+  "synchronize": true,
+  "timezone": "+09:00",
+  "logging": false,
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "1234",
+  "charset": "UTF8_GENERAL_CI"
+} 
