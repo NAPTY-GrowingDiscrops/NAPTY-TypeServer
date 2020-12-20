@@ -11,6 +11,7 @@ export const createToken = async (id: string, name: string): Promise<string> => 
     expiresIn: '30d',
   }
 
+  
   return jwt.sign(payload, JWT_SECRET, options);
 }
 
